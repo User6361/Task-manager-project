@@ -214,11 +214,6 @@ async def update_task(
         if field == "tag_ids":
             continue
 
-            # Нормализуем deadline
-        if field == "deadline" and isinstance(new_val, datetime) and new_val.tzinfo is not None:
-            new_val = new_val.astimezone(timezone.utc).replace(tzinfo=None)
-    
-
         old_val = getattr(task, field)
         if old_val != new_val:
             history = TaskHistory(
